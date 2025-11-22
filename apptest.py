@@ -3,8 +3,11 @@ import google.generativeai as genai
 
 genai.configure(api_key=st.secrets["Gemini_api"])
 model = genai.GenerativeModel("gemini-2.5-flash-lite")
-if st.session_state.times:
-    chat = model.start_chat(history=[])
+try:
+    if st.session_state.times:
+        chat = model.start_chat(history=[])
+except:
+    pass
 st.session_state.times+=1
 if "entire_chat" not in st.session_state:
     st.session_state.entire_chat = ""
