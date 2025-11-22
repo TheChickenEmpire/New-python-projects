@@ -5,7 +5,8 @@ model=genai.GenerativeModel("gemini-2.5-flash-lite")
 chat=model.start_chat(history=[])
 while True:
     try:
-        response=chat.send_message(st.chat_input("You:\n"))
+        message=st.chat_input("You:\n")
+        response=chat.send_message(message)
         response=response.text
         st.text("Gemini:\n"+response+'\n_________________________________________')
     except ValueError:
