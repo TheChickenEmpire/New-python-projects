@@ -5,9 +5,10 @@ genai.configure(api_key=st.secrets["Gemini_api"])
 model = genai.GenerativeModel("gemini-2.5-flash-lite")
 if "entire_chat" not in st.session_state:
     st.session_state.entire_chat = ""
+    chat = model.start_chat(history=[])
 message = st.chat_input("You:")
 if message:
-    chat = model.start_chat(history=[])
+    
     try:
         resp = chat.send_message(message)
         text = getattr(resp, "text", str(resp))
