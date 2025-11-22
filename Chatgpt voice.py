@@ -39,7 +39,7 @@ def main():
         input("Enter To speak\n--------------\n")
         command = listen()
         print("Generating.....")
-        openai.api_key = " "
+        openai.api_key = ""
         completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": command}])
         message = completion.choices[0].message.content
         print(message)
