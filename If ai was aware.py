@@ -1,7 +1,7 @@
 import google.generativeai as genai
 import time
 from os import system
-genai.configure(api_key="")
+genai.configure(api_key=open("C:/Users/lucas/Desktop/Gemini_api_key.txt", "r").read())
 model=genai.GenerativeModel("gemini-2.5-flash-lite")
 chat=model.start_chat(history=[])
 start_time = time.time()
