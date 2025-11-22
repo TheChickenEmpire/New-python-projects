@@ -7,7 +7,7 @@ entire_chat=""
 while True:
     try:
         message=st.chat_input("You:\n")
-        entire_chat=entire_chat+message
+        entire_chat=entire_chat+"You:\n"+message
         response=chat.send_message(message)
         response=response.text
         response="Gemini:\n"+response+'\n_________________________________________\n'
