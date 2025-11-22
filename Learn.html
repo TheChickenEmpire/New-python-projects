@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Learn html little bro</title>
+  <style>
+    img {display:block; margin-top: 12px;}
+  </style>
+</head>
+<body style = "background-color: black;">
+  <h1 id="Txt" style="font-size: xx-large;">Rainbow</h1>
+  <button id="buton" style="background-color: black; border-color: white;">Press this</button>
+  <p style="font-size: xx-large;" id = "changed">Change</p>
+  <input id = "colorselect" type="color" value="000000">
+  <img src="Burn.png" style="width: 200px;">
+  <p></p>
+  <script>
+    console.log("Hello html and javascript")
+    const buton = document.getElementById("buton")
+    buton.addEventListener("click", function () {alert("This is an alert()")})
+    const color = ["red","orange","yellow","green","blue","pink"]
+    const changed = document.getElementById('changed')
+    const thycolor = document.getElementById("colorselect")
+    const txt = document.getElementById("Txt")
+    let hue = 0
+    setInterval(() => {
+      const c = `hsl(${hue},100%,50%)`
+      txt.style.color=c
+      buton.style.color=c
+      hue=(hue+2)
+      if (hue >= 360) hue = 0
+    }, 10);
+    thycolor.addEventListener("input",(e) =>{changed.style.color = e.target.value})
+  </script>
+  <noscript style="color: white;">lol</noscript>
+</body>
+</html>

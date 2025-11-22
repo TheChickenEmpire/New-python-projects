@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Learn html little bro</title>
+</head>
+<body>
+  <p id="Txt">This is a website</p>
+  <button id="buton">Press this</button>
+
+  <script>
+    console.log("script loaded");
+    const buton = document.getElementById("buton");
+    const txt = document.getElementById("Txt");
+    console.log("buton:", buton);
+    console.log("txt:", txt);
+    if (!buton) {
+      console.error("Button element not found (check id or timing).");
+    } else {
+      buton.addEventListener("click", function () {
+        console.log("button clicked");
+        alert("I'm here");
+      });
+    }
+  </script>
+  <noscript>lol</noscript>
+</body>
+</html>
