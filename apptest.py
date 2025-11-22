@@ -7,8 +7,7 @@ try:
     if st.session_state.times:
         chat = model.start_chat(history=[])
 except:
-    pass
-st.session_state.times+=1
+    st.session_state.times=0
 if "entire_chat" not in st.session_state:
     st.session_state.entire_chat = ""
 message = st.chat_input("You:")
