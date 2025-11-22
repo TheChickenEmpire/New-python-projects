@@ -1,2 +1,12 @@
 import streamlit as st
-  gh
+import google.generativeai as genai
+genai.configure(api_key=st.secrets["Gemini_api"])
+model=genai.GenerativeModel("gemini-2.5-flash-lite")
+chat=model.start_chat(history=[])
+while True:
+    try:
+        response=chat.send_message(st.chat_input("You:\n"))
+        response=response.text
+        st.text("Gemini:\n"+response+'\n_________________________________________')
+    except ValueError:
+        st.text('Program: Pls input content\n_________________________________________')
