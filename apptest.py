@@ -9,5 +9,5 @@ while True:
         response=chat.send_message(message)
         response=response.text
         st.text("Gemini:\n"+response+'\n_________________________________________')
-    except ValueError:
-        st.text('Program: Pls input content\n_________________________________________')
+    except:
+        pass
