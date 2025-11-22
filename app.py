@@ -1,10 +1,28 @@
 import streamlit as st
 from PIL import Image
+import google.generativeai as genai
 st.set_page_config(page_title='Chicken Empire', page_icon=":chicken:", layout= 'wide')
 st.logo(Image.open('Chicken.png'))
 with st.sidebar:
     st.subheader(':rainbow[My channel]')
     st.link_button("Channel", 'https://www.youtube.com/@TheChickenEmpire')
+    genai.configure(api_key=st.secrets["Gemini_api"])
+    model = genai.GenerativeModel("gemini-2.5-flash-lite")
+    if "chat" not in st.session_state:
+        st.session_state.chat = model.start_chat(history=[])
+    if "entire_chat" not in st.session_state:
+        st.session_state.entire_chat = ""
+    message = st.chat_input("You:")
+    if message:
+        try:
+            resp = st.session_state.chat.send_message(message)
+            text = getattr(resp, "text", str(resp))
+        except Exception as e:
+            text = f"(error: {e})"
+
+        st.session_state.entire_chat += f"You:\n{message}\nGemini:\n{text}\n_________________\n"
+    st.text(st.session_state.entire_chat)
+
     
 st.subheader('Welcome to')
 st.header(':rainbow[**The Chicken Empire**]')
