@@ -1,6 +1,8 @@
 import streamlit as st
 import google.generativeai as genai
-
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 genai.configure(api_key=st.secrets["Gemini_api"])
 model = genai.GenerativeModel("gemini-2.5-flash-lite")
 st.session_state.api = 0
@@ -17,6 +19,7 @@ if message:
         if "quota" in e:
             if st.session_state.api == 0:
                 genai.configure(api_key=st.secrets["Gemini_api2"])
+                logger.info("Switched 2 second api key")
                 st.session_state.api = 1
             else:
                 genai.configure(api_key=st.secrets["Gemini_api"])
