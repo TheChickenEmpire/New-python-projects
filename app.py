@@ -4,7 +4,7 @@ import google.generativeai as genai
 st.set_page_config(page_title='Chicken Empire', page_icon=":chicken:", layout= 'wide')
 st.logo(Image.open('Chicken.png'))
 with st.sidebar:
-    st.subheader(':rainbow[My channel]')
+    st.subheader(':rainbow[**My channel]**')
     st.link_button("Channel", 'https://www.youtube.com/@TheNewChickenEmpire')
     genai.configure(api_key=st.secrets["Gemini_api"])
     model = genai.GenerativeModel("gemini-2.5-flash-lite")
