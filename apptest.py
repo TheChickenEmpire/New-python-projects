@@ -13,7 +13,7 @@ message = st.chat_input("You:")
 with st.sidebar:
     if st.button("RESET"):
         st.session_state.chat = model.start_chat(history=[])
-        st.session_state.entire_chat += "New chat:\n--------------------"
+        st.session_state.entire_chat += "New chat:\n------------------------\n"
 if message:
     try:
         resp = st.session_state.chat.send_message(message)
