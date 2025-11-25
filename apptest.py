@@ -30,8 +30,11 @@ if message:
                 genai.configure(api_key=st.secrets["Gemini_api"])
                 st.session_state.apinum = 1
                 logger.info("Switched to api 1")
-            else:
-                text = f"(error: {e})"
-                logger.error(text)
+                resp = st.session_state.chat.send_message(message)
+                text = getattr(resp, "text", str(resp))
+        else:
+            text = f"(error: {e})"
+            logger.error(text)
+        
     st.session_state.entire_chat += f"You:\n{message}\nGemini:\n{text}\n__________________________________\n"
 st.text(st.session_state.entire_chat)
