@@ -13,7 +13,7 @@ message = st.chat_input("You:")
 with st.sidebar:
     if st.button("RESET"):
         st.session_state.chat = model.start_chat(history=[])
-        st.session_state.entire_chat += "New chat:\n------------------------\n"
+        st.session_state.entire_chat += "New chat:\n__________________________________\n"
 if message:
     try:
         resp = st.session_state.chat.send_message(message)
@@ -21,5 +21,5 @@ if message:
     except Exception as e:
         text = f"(error: {e})"
         logger.error(text)
-    st.session_state.entire_chat += f"You:\n{message}\nGemini:\n{text}\n_________________\n"
+    st.session_state.entire_chat += f"You:\n{message}\nGemini:\n{text}\n__________________________________\n"
 st.text(st.session_state.entire_chat)
