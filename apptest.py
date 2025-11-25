@@ -16,10 +16,11 @@ with st.sidebar:
         st.session_state.entire_chat += "New chat:\n__________________________________\n"
 if message:
     try:
+        st.session_state.entire_chat += "You:\n{message}\n"
         resp = st.session_state.chat.send_message(message)
         text = getattr(resp, "text", str(resp))
     except Exception as e:
         text = f"(error: {e})"
         logger.error(text)
-    st.session_state.entire_chat += f"You:\n{message}\nGemini:\n{text}\n__________________________________\n"
+    st.session_state.entire_chat += f"Gemini:\n{text}\n__________________________________\n"
 st.text(st.session_state.entire_chat)
