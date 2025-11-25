@@ -17,7 +17,5 @@ if message:
     except Exception as e:
         text = f"(error: {e})"
         logger.error(text)
-
-
     st.session_state.entire_chat += f"You:\n{message}\nGemini:\n{text}\n_________________\n"
 st.text(st.session_state.entire_chat)
