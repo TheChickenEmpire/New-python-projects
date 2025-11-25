@@ -7,10 +7,11 @@ genai.configure(api_key=st.secrets["Gemini_api"])
 model = genai.GenerativeModel("gemini-2.5-flash-lite")
 if "apinum" not in st.session_state:
     st.session_state.apinum = 0
-if "chat" not in st.session_state:
-    st.session_state.chat = model.start_chat(history=[])
 if "entire_chat" not in st.session_state:
     st.session_state.entire_chat = ""
+if "chat" not in st.session_state:
+    st.session_state.chat = model.start_chat(history=[st.session_state.entire_chat])
+
 message = st.chat_input("You:") 
 with st.sidebar:
     if st.button(":rainbow[**RESET_CHAT**]"):
@@ -28,6 +29,7 @@ if message:
                 logger.info("Switched to api 2")
             elif st.session_state.apinum == 1:
                 genai.configure(api_key=st.secrets["Gemini_api"])
+                model = genai.GenerativeModel("gemini-2.5-flash-lite")
                 st.session_state.apinum = 1
                 logger.info("Switched to api 1")
             resp = st.session_state.chat.send_message(message)
