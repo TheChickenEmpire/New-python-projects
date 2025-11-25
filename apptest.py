@@ -10,6 +10,9 @@ if "chat" not in st.session_state:
 if "entire_chat" not in st.session_state:
     st.session_state.entire_chat = ""
 message = st.chat_input("You:")
+if st.button("RESET"):
+    st.session_state.chat = model.start_chat(history=[])
+    st.session_state.entire_chat = "New chat:\n--------------------"
 if message:
     try:
         resp = st.session_state.chat.send_message(message)
